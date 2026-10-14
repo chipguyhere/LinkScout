@@ -27,7 +27,7 @@ for the exact set.
 
 **Arduino core for ESP32 (LGPL).** The core is linked statically. To meet LGPL-2.1 section 6,
 the complete source of this sketch and of the non-public libraries it uses is published (see
-README, "Source code and rebuilding"), so you can rebuild the firmware against a modified
+[BUILDING.md](BUILDING.md), "Source code and the LGPL"), so you can rebuild the firmware against a modified
 copy of the core. The core itself is unmodified and available at
 <https://github.com/espressif/arduino-esp32>, tag `3.3.11`.
 
