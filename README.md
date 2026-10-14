@@ -6,7 +6,7 @@
   <tr>
     <td align="center" width="33%"><img src="docs/main-menu.jpg" alt="LinkScout boot menu with two large buttons, Cresnet Monitor and Switch Port Finder"></td>
     <td align="center" width="33%"><img src="docs/cresnet-monitor.jpg" alt="Cresnet Monitor showing a 16 by 16 grid of Cresnet IDs, most green, a few magenta, the rest grey"></td>
-    <td align="center" width="33%"><img src="docs/port-finder.jpg" alt="Switch Port Finder showing link up at 100 Mbps, the switch name, port 6, its system description and the DHCP address"></td>
+    <td align="center" width="33%"><img src="docs/port-finder.jpg" alt="Switch Port Finder showing link up at 100 Mbps, the switch name, port 5, its system description and the DHCP address"></td>
   </tr>
   <tr>
     <td align="center"><b>Pick a tool at boot</b></td>
