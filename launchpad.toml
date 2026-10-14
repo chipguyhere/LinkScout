@@ -1,0 +1,17 @@
+# ESP Launchpad (minimal) configuration for LinkScout.  Open it with:
+#   https://espressif.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=<this file's raw URL>
+# Every URL here must send CORS headers: raw.githubusercontent.com does,
+# GitHub release downloads don't.  The image is rebuilt by make_release.py.
+esp_toml_version = 1.0
+supported_apps = ["LinkScout"]
+multipart = true
+chip = "esp32p4"
+
+["LinkScout"]
+readme.text = "https://raw.githubusercontent.com/chipguyhere/LinkScout/main/README.md"
+console_baudrate = 115200
+# Bootloader, partition table and app merged into one image at 0x0, stopping
+# at the end of the app rather than padded to the panel's 32 MB.  The
+# launchpad erases the whole chip before writing anyway.
+image.esp32p4.parts = ["https://raw.githubusercontent.com/chipguyhere/LinkScout/main/linkscout.bin"]
+image.esp32p4.addresses = ["0x0"]

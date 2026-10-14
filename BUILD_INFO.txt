@@ -1,0 +1,19 @@
+LinkScout, packaged 2026-10-14
+
+esp32 core (espressif/arduino-esp32): 3.3.11
+ESP-IDF in that core's esp32p4-libs:   v5.5.5 b774170ff46
+
+Bundled libraries (in libraries/):
+  chipguy_P486Panel_480display 1.0.0
+  chipguy_P486Panel_touch 1.0.0
+
+External libraries (install from Library Manager, unmodified):
+  lvgl 9.5.0
+
+Build, from the folder that contains this one:
+  arduino-cli compile --fqbn "esp32:esp32:esp32p4:PSRAM=enabled,FlashSize=32M,CDCOnBoot=cdc" \
+      --libraries LinkScout/libraries LinkScout
+or run make_release.py here, which also produces linkscout.bin.
+
+To relink against a modified Arduino-ESP32 core, install the modified core
+in place of the version above and rebuild with the same command.
