@@ -1,5 +1,7 @@
 # ESP Launchpad (minimal) configuration for LinkScout.  Open it with:
-#   https://espressif.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=<this file's raw URL>
+#   https://chipguyhere.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=<this file's raw URL>
+# That's a fork of espressif/esp-launchpad whose only change is adding the
+# panel's CH343 USB-serial chip (1a86:55d3) to the port picker's filter list.
 # Every URL here must send CORS headers: raw.githubusercontent.com does,
 # GitHub release downloads don't.  The image is rebuilt by make_release.py.
 esp_toml_version = 1.0

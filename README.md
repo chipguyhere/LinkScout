@@ -171,14 +171,20 @@ and a 12–24 V power input. Nothing else is needed: no external transceiver, no
 In **Chrome or Edge on a desktop computer** (these browsers can talk to USB serial ports;
 Firefox and Safari can't):
 
-1. Plug the panel's **USB-C** port into the computer with a USB **data** cable (some cables
-   only charge).
-2. Open **[LinkScout in ESP Launchpad](https://espressif.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=https://raw.githubusercontent.com/chipguyhere/LinkScout/main/launchpad.toml)**
+1. Plug the panel's **USB TO UART** port into the computer with a USB **data** cable (some
+   cables only charge). The panel has two USB-C ports; the other one, **USB-OTG**, can't be
+   used for flashing.
+2. Open **[LinkScout in ESP Launchpad](https://chipguyhere.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=https://raw.githubusercontent.com/chipguyhere/LinkScout/main/launchpad.toml)**
    (this erases the whole panel: see the warning above).
-3. Click **Connect** and pick the panel's port (*USB-SERIAL CH340* or similar). It erases the
-   chip and writes the newest firmware straight from this repository; there's nothing to
-   download first. Erasing all 32 MB takes a while, so give it a few minutes.
+3. Click **Connect** and pick the panel's port, listed as **USB Single Serial**. It erases
+   the chip and writes the newest firmware straight from this repository; there's nothing to
+   download first. Erasing all 32 MB takes a while, so give it a few minutes. You don't
+   need to hold BOOT: the USB-serial chip resets the panel into flashing mode by itself.
 4. Press the panel's **reset** button, or unplug it and plug it back in.
+
+The link uses [a fork of Espressif's ESP Launchpad](https://github.com/chipguyhere/esp-launchpad)
+with one change: Espressif's version only offers USB-serial chips on a fixed list, and the
+panel's CH343 isn't on it yet, so the port never appears there.
 
 If the launchpad won't connect, hold **BOOT**, press and release **RESET**, let go of BOOT
 and try again, or use one of the methods below.
@@ -186,22 +192,26 @@ and try again, or use one of the methods below.
 ## Installing: web flasher or esptool
 
 The image is [`linkscout.bin`](linkscout.bin) in this repository: bootloader, partition table
-and app in one file, written at address **0x0**.
+and app in one file, written at address **0x0**. Use the **USB TO UART** port for these too.
 
 **Web flasher**, in the same browsers: open <https://espressif.github.io/esptool-js/>, click
-**Connect**, pick the panel's port, set **Flash Address** to `0x0`, choose `linkscout.bin`
-and click **Program**.
+**Connect**, pick **USB Single Serial**, set **Flash Address** to `0x0`, choose
+`linkscout.bin` and click **Program**.
 
 **esptool**:
 
 ```sh
-esptool --chip esp32p4 --port /dev/cu.wchusbserial* write-flash 0x0 linkscout.bin
+esptool --chip esp32p4 --port PORT write-flash 0x0 linkscout.bin
 ```
 
-(Older esptool versions spell the command `esptool.py … write_flash`.) On Windows the port is
-a `COMx`. On most computers the CH340 USB-serial chip works without a driver; older Windows
-versions may need WCH's CH340 driver. Serial diagnostics are printed at 115200 baud on the
-same port.
+`PORT` is `COM3` or similar on Windows, `/dev/ttyACM0` on Linux, and `/dev/cu.usbmodem…` on
+macOS (`/dev/cu.wchusbserial…` if WCH's own driver is installed). Older esptool versions
+spell the command `esptool.py … write_flash`.
+
+**Drivers.** The panel's USB-serial chip (a WCH CH343) uses the standard USB serial class,
+so Windows 10/11, macOS, Linux and ChromeOS need no driver. Windows 7 and 8 need WCH's CH343
+driver. If a Mac won't connect, installing WCH's CH34x driver usually fixes it. Serial
+diagnostics are printed at 115200 baud on the same port.
 
 ## Building from source
 
