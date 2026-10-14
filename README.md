@@ -2,6 +2,19 @@
 
 **A two-tool field kit for AV and network installers**, on a Waveshare ESP32-P4 wall panel.
 
+<table>
+  <tr>
+    <td align="center" width="33%"><img src="docs/main-menu.jpg" alt="LinkScout boot menu with two large buttons, Cresnet Monitor and Switch Port Finder"></td>
+    <td align="center" width="33%"><img src="docs/cresnet-monitor.jpg" alt="Cresnet Monitor showing a 16 by 16 grid of Cresnet IDs, most green, a few magenta, the rest grey"></td>
+    <td align="center" width="33%"><img src="docs/port-finder.jpg" alt="Switch Port Finder showing link up at 100 Mbps, the switch name, port 6, its system description and the DHCP address"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Pick a tool at boot</b></td>
+    <td align="center"><b>Cresnet Monitor</b><br>every ID: polled, answering, or gone quiet</td>
+    <td align="center"><b>Switch Port Finder</b><br>which switch and port this jack lands on</td>
+  </tr>
+</table>
+
 When the panel boots, it shows two large buttons. The tool you tap runs until the next power
 cycle:
 
@@ -89,10 +102,10 @@ for the RS485 port, which is isolated.
    with the terminal blocks, not the side that faces the screen. Find the 4-pin power and
    RS485 terminal. Beside its **A** and **B** pins are two identical fuses marked **JF**.
 3. The resistor is just past those fuses, toward the edge of the board. The photo shows
-   that spot **after** the resistor was removed: the circle marks its two empty pads. (The
-   faint line next to them is an unrelated scratch.) The part is **very small**: about half
-   a millimetre long, with no reference designator on the board and no marking on the part,
-   even under magnification. Use a magnifier and a good light.
+   that spot **after** the resistor was removed: the circle marks its two empty pads. The
+   part is **very small**: about 1 mm long and half a millimetre wide, with no reference
+   designator on the board and no marking on the part, even under magnification. Use a
+   magnifier and a good light.
 4. To confirm it's the right part, measure across it with an ohmmeter: it reads 120 Ω.
    Then remove it, with fine tweezers or a soldering iron, or by carefully breaking it off.
    Afterwards A–B should no longer measure 120 Ω. The bias resistors on A and B mean it
